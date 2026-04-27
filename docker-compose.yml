@@ -1,0 +1,12 @@
+services:
+  gateway:
+    build:
+      context: .
+    container_name: whistlestop_nginx_gateway
+    environment:
+      BACKEND_UPSTREAM_URL: ${BACKEND_UPSTREAM_URL:-https://railway-backend-csc8019-production.up.railway.app}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      - "8080:80"
+    restart: unless-stopped
